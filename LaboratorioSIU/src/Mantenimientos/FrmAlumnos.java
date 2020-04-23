@@ -5,6 +5,10 @@
  */
 package Mantenimientos;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author OtakuGT
@@ -27,21 +31,241 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCodA = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtNomA = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtDireA = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTelA = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmailA = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        CboEst = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        lblEstatus = new javax.swing.JLabel();
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Carlos Castillo [9959-19-25344]"));
+
+        jLabel1.setText("Carnet Alumno");
+
+        jLabel2.setText("Nombre Alumno");
+
+        jLabel3.setText("Direccion Alumno");
+
+        jLabel4.setText("Telefono Alumno");
+
+        jLabel5.setText("Email Alumno");
+
+        jLabel6.setText("Estatus Alumno");
+
+        CboEst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "De Baja" }));
+
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Modificar");
+
+        jButton3.setText("Eliminar");
+
+        jButton4.setText("Generar Carnet");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        lblEstatus.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtCodA)
+                                    .addComponent(txtNomA)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtDireA)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtTelA)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtEmailA, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addComponent(jLabel6)
+                            .addComponent(CboEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblEstatus)))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNomA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDireA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTelA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmailA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CboEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(lblEstatus)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_ins", "root", "");
+            PreparedStatement pst = cn.prepareStatement("insert into alumnos values(?,?,?,?,?,?)");
+            
+            pst.setString(1, txtCodA.getText().trim());
+            pst.setString(2, txtNomA.getText().trim());
+            pst.setString(3, txtDireA.getText().trim());
+            pst.setString(4, txtTelA.getText().trim());
+            pst.setString(5, txtEmailA.getText().trim());
+            pst.setString(6, CboEst.getSelectedItem().toString());
+            
+            pst.executeUpdate();
+            
+            txtNomA.setText("");
+            txtDireA.setText("");
+            txtCodA.setText("");
+            txtTelA.setText("");
+            txtEmailA.setText("");
+            lblEstatus.setText("Registro exitoso.");
+        }catch (Exception e){
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ObtenerInicialesN(txtNomA.getText());
+        ObtenerInicialesDire(txtDireA.getText());
+        ObtenerDigitosEstatus((String) CboEst.getSelectedItem());
+        txtCodA.setText(iNombre.toUpperCase()+iApellido.toUpperCase()+iCod);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    String iNombre=""; String iApellido="";
+    private void ObtenerInicialesN(String nombre){
+        int i=0, x=0, longitud=0;
+        char ch;
+        String inic="";
+        longitud = nombre.length();
+        x=longitud-1;
+        for(i=0; i<=x; i++)
+        {
+            ch=nombre.charAt(i);
+            if(i==0)
+            {
+                inic=inic+ch;
+            }
+            if(ch==' ')
+            {
+                ch = nombre.charAt(i+1);
+                inic=inic+ch;
+                
+            }
+        }
+        iNombre+=inic;
+    }
+    private void ObtenerInicialesDire(String dire){
+        int i=0, x=0, longitud=0;
+        char ch;
+        String inic="";
+        longitud = dire.length();
+        x=longitud-1;
+        for(i=0; i<=x; i++)
+        {
+            ch=dire.charAt(i);
+            if(i==0)
+            {
+                inic=inic+ch;
+            }
+            if(ch==' ')
+            {
+                ch = dire.charAt(i+1);
+                inic=inic+ch;
+                
+            }
+        }
+        iApellido+=inic;
+    }
+    String iCod="";
+    private void ObtenerDigitosEstatus(String cod){
+        for(int i=0; i<4; i++){
+            iCod+=cod.charAt(i);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CboEst;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblEstatus;
+    private javax.swing.JTextField txtCodA;
+    private javax.swing.JTextField txtDireA;
+    private javax.swing.JTextField txtEmailA;
+    private javax.swing.JTextField txtNomA;
+    private javax.swing.JTextField txtTelA;
     // End of variables declaration//GEN-END:variables
 }

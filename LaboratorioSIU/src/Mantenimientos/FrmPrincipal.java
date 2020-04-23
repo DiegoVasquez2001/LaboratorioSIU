@@ -9,11 +9,13 @@ package Mantenimientos;
  *
  * @author diego
  */
+
 public class FrmPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmPrincipal
      */
+    private FrmAlumnos nuevaVentana1;
     public FrmPrincipal() {
         initComponents();
     }
@@ -53,6 +55,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         M_Mantenimientos.setText("Mantenimientos");
 
         MI_Alumnos.setText("Alumnos");
+        MI_Alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_AlumnosActionPerformed(evt);
+            }
+        });
         M_Mantenimientos.add(MI_Alumnos);
 
         MI_Maestros.setText("Maestros");
@@ -87,6 +94,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MI_AlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AlumnosActionPerformed
+        // TODO add your handling code here:
+           nuevaVentana1 = new FrmAlumnos();
+           DP_Workbench.add (nuevaVentana1);
+    }//GEN-LAST:event_MI_AlumnosActionPerformed
 
     /**
      * @param args the command line arguments
