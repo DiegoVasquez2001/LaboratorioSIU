@@ -8,6 +8,7 @@ package Mantenimientos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,6 +50,9 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         lblEstatus = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Carlos Castillo [9959-19-25344]"));
 
@@ -66,7 +70,7 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Estatus Alumno");
 
-        CboEst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "De Baja" }));
+        CboEst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Baja" }));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +80,11 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
 
@@ -87,6 +96,15 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         });
 
         lblEstatus.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+
+        jLabel7.setText("Busqueda");
+
+        jButton5.setText("Buscar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,17 +130,25 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4))
                             .addComponent(jLabel6)
-                            .addComponent(CboEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CboEst, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(lblEstatus)))
-                .addContainerGap(185, Short.MAX_VALUE))
+                        .addComponent(lblEstatus))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +185,12 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addGap(33, 33, 33)
                 .addComponent(lblEstatus)
                 .addGap(21, 21, 21))
         );
@@ -169,7 +201,7 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_ins", "root", "");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "");
             PreparedStatement pst = cn.prepareStatement("insert into alumnos values(?,?,?,?,?,?)");
             
             pst.setString(1, txtCodA.getText().trim());
@@ -205,6 +237,53 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ID = txtBuscar.getText().trim();
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update alumnos set nombre_Alumnos = ?, direccion_Alumnos = ?, telefono_Alumnos = ?, email_Alumnos = ?, estatus_Alumno = ? where ID = " + ID);
+            
+            pst.setString(1, txtCodA.getText().trim());
+            pst.setString(2, txtNomA.getText().trim());
+            pst.setString(3, txtDireA.getText().trim());
+            pst.setString(4, txtTelA.getText().trim());
+            pst.setString(5, txtEmailA.getText().trim());
+            pst.setString(6, CboEst.getSelectedItem().toString());
+            pst.executeUpdate();
+            
+            lblEstatus.setText("Modificación exitosa.");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from alumnos where ID = ?");
+            pst.setString(1, txtBuscar.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                txtCodA.setText(rs.getString("NombreAlumno"));
+                txtNomA.setText(rs.getString("Grupo"));
+                txtDireA.setText(rs.getString("NombreAlumno"));
+                txtTelA.setText(rs.getString("Grupo"));
+                txtEmailA.setText(rs.getString("NombreAlumno"));
+            } else {
+            //    JOptionPane.showMessageDialog(null, "Alumno no registrado.");
+               lblEstatus.setText("Alumno NO REGISTRADO");
+            }
+            
+        }catch (Exception e){
+            
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     String iNombre=""; String iTelefono="";
     private void ObtenerInicialesN(String nombre){
         int i=0, x=0, longitud=0;
@@ -228,22 +307,22 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         }
         iNombre+=inic;
     }
-    private void ObtenerInicialesDire(String dire){
+    private void ObtenerInicialesDire(String tel){
         int i=0, x=0, longitud=0;
         char ch;
         String inic="";
-        longitud = dire.length();
+        longitud = tel.length();
         x=longitud-1;
         for(i=0; i<=x; i++)
         {
-            ch=dire.charAt(i);
+            ch=tel.charAt(i);
             if(i==0)
             {
                 inic=inic+ch;
             }
             if(ch==' ')
             {
-                ch = dire.charAt(i+1);
+                ch = tel.charAt(i+1);
                 inic=inic+ch;
                 
             }
@@ -263,13 +342,16 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblEstatus;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodA;
     private javax.swing.JTextField txtDireA;
     private javax.swing.JTextField txtEmailA;
