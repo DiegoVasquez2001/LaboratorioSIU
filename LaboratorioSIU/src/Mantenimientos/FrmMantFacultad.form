@@ -85,19 +85,10 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtCodFacu" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNomFacu" alignment="0" pref="170" max="32767" attributes="0"/>
-=======
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtNomFacu" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
                                       <Component id="txtEsFacu" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -123,14 +114,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodFacu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-=======
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNomFacu" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -158,14 +141,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-<<<<<<< HEAD
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo Facultad:"/>
-          </Properties>
-        </Component>
-=======
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre Facultad:"/>
@@ -176,11 +151,6 @@
             <Property name="text" type="java.lang.String" value="Estado Facultad:"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JTextField" name="txtCodFacu">
-        </Component>
-=======
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         <Component class="javax.swing.JTextField" name="txtNomFacu">
         </Component>
         <Component class="javax.swing.JTextField" name="txtEsFacu">
@@ -189,34 +159,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Alta"/>
           </Properties>
-<<<<<<< HEAD
-=======
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAltaActionPerformed"/>
           </Events>
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         </Component>
         <Component class="javax.swing.JButton" name="btBaja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja"/>
           </Properties>
-<<<<<<< HEAD
-=======
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBajaActionPerformed"/>
           </Events>
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         </Component>
         <Component class="javax.swing.JButton" name="btCambio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cambio"/>
           </Properties>
-<<<<<<< HEAD
-=======
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCambioActionPerformed"/>
           </Events>
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -229,12 +190,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
-<<<<<<< HEAD
-=======
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
           </Events>
->>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
         </Component>
       </SubComponents>
     </Container>

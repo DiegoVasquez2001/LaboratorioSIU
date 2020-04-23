@@ -26,14 +26,23 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Facultad"/>
               </Properties>
+<<<<<<< HEAD
+=======
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_FacultadActionPerformed"/>
+              </Events>
+>>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MI_Secciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Secciones"/>
               </Properties>
+<<<<<<< HEAD
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_SeccionesActionPerformed"/>
               </Events>
+=======
+>>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MI_Carreras">
               <Properties>
@@ -44,6 +53,12 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cursos"/>
               </Properties>
+<<<<<<< HEAD
+=======
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_CursosActionPerformed"/>
+              </Events>
+>>>>>>> 4a4efd690f923d37b4cb5d45017e6cf454c7930b
             </MenuItem>
           </SubComponents>
         </Menu>
