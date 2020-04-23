@@ -85,12 +85,10 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtCodFacu" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNomFacu" alignment="0" pref="170" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtNomFacu" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                       <Component id="txtEsFacu" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -114,11 +112,6 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodFacu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -148,11 +141,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo Facultad:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre Facultad:"/>
@@ -163,8 +151,6 @@
             <Property name="text" type="java.lang.String" value="Estado Facultad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodFacu">
-        </Component>
         <Component class="javax.swing.JTextField" name="txtNomFacu">
         </Component>
         <Component class="javax.swing.JTextField" name="txtEsFacu">
@@ -173,16 +159,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Alta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAltaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btBaja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBajaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btCambio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cambio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCambioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -195,6 +190,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
