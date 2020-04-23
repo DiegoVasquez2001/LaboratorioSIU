@@ -59,6 +59,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         M_Mantenimientos.add(MI_Maestros);
 
         MI_Facultad.setText("Facultad");
+        MI_Facultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_FacultadActionPerformed(evt);
+            }
+        });
         M_Mantenimientos.add(MI_Facultad);
 
         MI_Secciones.setText("Secciones");
@@ -68,6 +73,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         M_Mantenimientos.add(MI_Carreras);
 
         MI_Cursos.setText("Cursos");
+        MI_Cursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_CursosActionPerformed(evt);
+            }
+        });
         M_Mantenimientos.add(MI_Cursos);
 
         MB_Menu.add(M_Mantenimientos);
@@ -87,6 +97,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MI_CursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_CursosActionPerformed
+        FrmMantCursos frm = new FrmMantCursos();
+        DP_Workbench.add(frm);
+        frm.setVisible(true);
+    }//GEN-LAST:event_MI_CursosActionPerformed
+
+    private void MI_FacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_FacultadActionPerformed
+        FrmMantFacultad frm = new FrmMantFacultad();
+        DP_Workbench.add(frm);
+        frm.setVisible(true);
+    }//GEN-LAST:event_MI_FacultadActionPerformed
 
     /**
      * @param args the command line arguments

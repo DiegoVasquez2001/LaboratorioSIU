@@ -5,6 +5,12 @@
  */
 package Mantenimientos;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author diego
@@ -29,10 +35,8 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtCodFacu = new javax.swing.JTextField();
         txtNomFacu = new javax.swing.JTextField();
         txtEsFacu = new javax.swing.JTextField();
         btAlta = new javax.swing.JButton();
@@ -50,21 +54,39 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("Código Facultad:");
-
         jLabel3.setText("Nombre Facultad:");
 
         jLabel4.setText("Estado Facultad:");
 
         btAlta.setText("Alta");
+        btAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAltaActionPerformed(evt);
+            }
+        });
 
         btBaja.setText("Baja");
+        btBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBajaActionPerformed(evt);
+            }
+        });
 
         btCambio.setText("Cambio");
+        btCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCambioActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Código Facultad:");
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,12 +106,10 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCodFacu)
-                                    .addComponent(txtNomFacu, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNomFacu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEsFacu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -105,10 +125,6 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCodFacu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNomFacu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,6 +172,80 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAltaActionPerformed
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("insert into facultad values(?,?,?)");
+            
+            pst.setString(1, "0");
+            pst.setString(2, txtNomFacu.getText().trim());
+            pst.setString(3, txtEsFacu.getText().trim());
+            pst.executeUpdate();
+            
+            txtNomFacu.setText("");
+            txtEsFacu.setText("");
+            JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btAltaActionPerformed
+
+    private void btBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajaActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("delete from facultad where id_facultad = ?");
+            
+            pst.setString(1, txtBuscaFacu.getText().trim());
+            pst.executeUpdate();
+            txtNomFacu.setText("");
+            txtEsFacu.setText("");
+            txtBuscaFacu.setText("");
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btBajaActionPerformed
+
+    private void btCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambioActionPerformed
+       try {
+            String ID = txtBuscaFacu.getText().trim();
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("update facultad set nombre_facultad = ?, estado_facultad = ? where id_facultad = " + ID);
+            
+            pst.setString(1, txtNomFacu.getText().trim());
+            pst.setString(2, txtEsFacu.getText().trim());
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btCambioActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("select * from facultad where id_facultad = ?");
+            pst.setString(1, txtBuscaFacu.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                txtNomFacu.setText(rs.getString("nombre_facultad"));
+                txtEsFacu.setText(rs.getString("estado_facultad"));
+            } else {
+                JOptionPane.showMessageDialog(null, "CURSO NO REGISTRADO");
+            }
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlta;
@@ -163,13 +253,11 @@ public class FrmMantFacultad extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCambio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtBuscaFacu;
-    private javax.swing.JTextField txtCodFacu;
     private javax.swing.JTextField txtEsFacu;
     private javax.swing.JTextField txtNomFacu;
     // End of variables declaration//GEN-END:variables
