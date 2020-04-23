@@ -9,13 +9,11 @@ package Mantenimientos;
  *
  * @author diego
  */
-
 public class FrmPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmPrincipal
      */
-    private FrmAlumnos nuevaVentana1;
     public FrmPrincipal() {
         initComponents();
     }
@@ -97,8 +95,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void MI_AlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_AlumnosActionPerformed
         // TODO add your handling code here:
-           nuevaVentana1 = new FrmAlumnos();
-           DP_Workbench.add (nuevaVentana1);
+        FrmAlumnos FrmA = new FrmAlumnos();
+        DP_Workbench.add(FrmA);
+        FrmA.setVisible(true);
     }//GEN-LAST:event_MI_AlumnosActionPerformed
 
     /**

@@ -8,6 +8,7 @@ package Mantenimientos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,6 +51,8 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
         lblEstatus = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Carlos Castillo [9959-19-25344]"));
+
+        txtCodA.setEditable(false);
 
         jLabel1.setText("Carnet Alumno");
 
@@ -191,13 +194,18 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ObtenerInicialesN(txtNomA.getText());
-        ObtenerInicialesDire(txtDireA.getText());
-        ObtenerDigitosEstatus((String) CboEst.getSelectedItem());
-        txtCodA.setText(iNombre.toUpperCase()+iApellido.toUpperCase()+iCod);
+        if(txtNomA.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "INGRESE UN NOMBRE");
+        }else{
+            ObtenerInicialesN(txtNomA.getText());
+            ObtenerInicialesDire(txtTelA.getText());
+            ObtenerDigitosEstatus((String) CboEst.getSelectedItem());
+            txtCodA.setText(iNombre.toUpperCase()+iTelefono.toUpperCase()+iCod);
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    String iNombre=""; String iApellido="";
+    String iNombre=""; String iTelefono="";
     private void ObtenerInicialesN(String nombre){
         int i=0, x=0, longitud=0;
         char ch;
@@ -240,7 +248,7 @@ public class FrmAlumnos extends javax.swing.JInternalFrame {
                 
             }
         }
-        iApellido+=inic;
+        iTelefono+=inic;
     }
     String iCod="";
     private void ObtenerDigitosEstatus(String cod){
