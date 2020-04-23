@@ -5,6 +5,12 @@
  */
 package Mantenimientos;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author diego
@@ -29,10 +35,8 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtCodCurso = new javax.swing.JTextField();
         txtNomCurso = new javax.swing.JTextField();
         txtEstadoCurso = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -50,8 +54,6 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("Código Curso:");
-
         jLabel3.setText("Nombre Curso:");
 
         jLabel4.setText("Estado Curso:");
@@ -59,12 +61,32 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
         jLabel5.setText("Código Curso:");
 
         btAlta.setText("Alta");
+        btAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAltaActionPerformed(evt);
+            }
+        });
 
         btBaja.setText("Baja");
+        btBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBajaActionPerformed(evt);
+            }
+        });
 
         btCambio.setText("Cambio");
+        btCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCambioActionPerformed(evt);
+            }
+        });
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,10 +111,6 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
                             .addGap(44, 44, 44)
                             .addComponent(txtNomCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(48, 48, 48)
-                            .addComponent(txtCodCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(48, 48, 48)
                             .addComponent(txtBuscarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -103,10 +121,6 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCodCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -147,12 +161,86 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAltaActionPerformed
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("insert into curso values(?,?,?)");
+            
+            pst.setString(1, "0");
+            pst.setString(2, txtNomCurso.getText().trim());
+            pst.setString(3, txtEstadoCurso.getText().trim());
+            pst.executeUpdate();
+            
+            txtNomCurso.setText("");
+            txtEstadoCurso.setText("");
+            JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btAltaActionPerformed
+
+    private void btBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajaActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("delete from curso where id_curso = ?");
+            
+            pst.setString(1, txtBuscarCurso.getText().trim());
+            pst.executeUpdate();
+            txtNomCurso.setText("");
+            txtEstadoCurso.setText("");
+            txtBuscarCurso.setText("");
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btBajaActionPerformed
+
+    private void btCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambioActionPerformed
+        try {
+            String ID = txtBuscarCurso.getText().trim();
+            
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("update curso set nombre_curso = ?, estado_curso = ? where id_curso = " + ID);
+            
+            pst.setString(1, txtNomCurso.getText().trim());
+            pst.setString(2, txtEstadoCurso.getText().trim());
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btCambioActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/SIU", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("select * from curso where id_curso = ?");
+            pst.setString(1, txtBuscarCurso.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                txtNomCurso.setText(rs.getString("nombre_curso"));
+                txtEstadoCurso.setText(rs.getString("estado_curso"));
+            } else {
+                JOptionPane.showMessageDialog(null, "CURSO NO REGISTRADO");
+            }
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,13 +249,11 @@ public class FrmMantCursos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btCambio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtBuscarCurso;
-    private javax.swing.JTextField txtCodCurso;
     private javax.swing.JTextField txtEstadoCurso;
     private javax.swing.JTextField txtNomCurso;
     // End of variables declaration//GEN-END:variables
